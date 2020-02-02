@@ -101,7 +101,7 @@
                                         <td><?php echo $value['email'] ?></td>
                                         <td><?php echo $value['cpf'] ?></td>
                                         <td><a  href='./Modal/updateCliente.php'class='btn btn-primary btn-sm'>Editar</a><td>
-                                        <td ><a href='./Queries/deletarCliente.php?=<?php echo $value["id"];?>'class='btn btn-danger btn-sm'>Delete</a></td>
+                                        <td ><a href='./Queries/deletarCliente.php?id=<?php echo $value["id"];?>'class='btn btn-danger btn-sm'>Delete</a></td>
                                     </tr>
                                     <?php } ?>
                                 </tbody>
