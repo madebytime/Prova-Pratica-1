@@ -7,8 +7,14 @@
   $stmt->bindParam(':id', $id,PDO::PARAM_INT); 
   $stmt->execute();
   echo $stmt->rowCount(); 
+  
 }else{
   echo $id;
 }
 
+if($stmt >= 1){
+  header('Location:../Clientes.php');
+}else{
+  echo 'Erro';
+}
 ?>

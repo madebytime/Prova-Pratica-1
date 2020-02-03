@@ -24,7 +24,7 @@ try {
 if ($stmt == 1) {
     header('Location:../Clientes.php');
 } else {
-    header('Location: ../Registro.php')
-};
+    header('Location: ../Registro.php');
+}
 
 ?>

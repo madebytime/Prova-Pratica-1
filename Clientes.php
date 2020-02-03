@@ -71,7 +71,7 @@
                         <div class="table-responsive">
                             <div style="padding: 10px;">
                             </div>
-                            <table class="table table-striped table-sm">
+                            <table id="table" class="table table-striped table-sm">
                                 <?php include("./Queries/listarclientes.php")?>
                                 <thead>
                                     <tr>
@@ -100,8 +100,9 @@
                                         <td><?php echo $value['cep'] ?></td>
                                         <td><?php echo $value['email'] ?></td>
                                         <td><?php echo $value['cpf'] ?></td>
-                                        <td><a  href='./Modal/updateCliente.php'class='btn btn-primary btn-sm'>Editar</a><td>
+                                        <td><button type='button' class='btn btn-primary btn-sm' onclick="abrirusuario(<?php echo $value['id'] ?>)">Editar</button>
                                         <td ><a href='./Queries/deletarCliente.php?id=<?php echo $value["id"];?>'class='btn btn-danger btn-sm'>Delete</a></td>
+                                                </td>
                                     </tr>
                                     <?php } ?>
                                 </tbody>
@@ -110,6 +111,22 @@
             </main>
         </div>
     </div>
+    <div class="modal fade bs-example-modal-lg"  tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel">Cliente</h4>
+                        </div>
+                        <div class="modal-body form-group">
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
 
 
 
@@ -117,9 +134,11 @@
 
 
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
-    </script>
+    <script src="https://code.jquery.com/jquery-3.0.0.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.js"
+        type="text/javascript"></script>
+    <script src="jquery.tabledit.min.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
     </script>
@@ -129,6 +148,21 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
 
     <script src="dashboard.js"></script>
+    <script>
+        function abrirusuario(id_usuario) {
+            $.ajax({
+                type: "POST",
+                url: "./Modal/updateCliente.php",
+                data: {
+                    id: id_usuario
+                },
+                success: function(result) {
+                    $('.modal-body').html(result);
+                    $('.bs-example-modal-lg').modal('show');
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>
